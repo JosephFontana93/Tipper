@@ -36,7 +36,9 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+The biggest challenges making this app was working with the XCode idea and learning the storyboards for Swift Development.
+After a little bit of practice you begin to understand how to connect the interface with the code and it becomes more
+intuitive. 
 
 ## License
 
