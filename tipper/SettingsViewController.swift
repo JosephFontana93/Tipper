@@ -12,11 +12,15 @@ class SettingsViewController: UIViewController {
 
     @IBOutlet weak var defaultTipPercentage: UISegmentedControl!
     
+    @IBOutlet weak var userCurrency: UITextField!
+    
     let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
         defaultTipPercentage.selectedSegmentIndex = defaults.integer(forKey: "userTipControl")
+        
+        userCurrency.text! = defaults.string(forKey: "userCurrency") ??  "$"
         // Do any additional setup after loading the view.
     }
     
@@ -30,9 +34,20 @@ class SettingsViewController: UIViewController {
         defaults.synchronize()
     }
     
+    @IBAction func setDefaultCurrency(_ sender: Any) {
+      
+        let defaultCur:String = userCurrency.text!
+        
+        defaults.set(defaultCur, forKey: "userCurrency")
+        
+        print(defaults.string(forKey: "userCurrency") ??  "$")
+        
+        defaults.synchronize()
+        
+        
+    }
     
     
-
     /*
     // MARK: - Navigation
 

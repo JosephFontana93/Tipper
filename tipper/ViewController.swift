@@ -23,6 +23,9 @@ class ViewController: UIViewController {
         super.viewWillAppear(animated)
         print(defaults.integer(forKey: "userTipControl"))
         tipControl.selectedSegmentIndex = defaults.integer(forKey: "userTipControl")
+        
+        calculateTip(0)
+        
         // This is a good place to retrieve the default tip percentage from UserDefaults
         // and use it to update the tip amount
     }
@@ -31,9 +34,11 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.title = "Tip Calculator"
+        billAmountTextField.becomeFirstResponder()
+        
     }
     
-
+  
     @IBAction func onTap(_ sender: UITapGestureRecognizer) {
         
         view.endEditing(true)
@@ -48,10 +53,17 @@ class ViewController: UIViewController {
         
         let total = bill + tip
         
-        tipPercentageLabel.text = String(format:"$%.2f", tip)
+        let userCur = defaults.string(forKey: "userCurrency") ?? "$"
         
-        totalLabel.text = String(format:"$%.2f", total)
+        let curFormat = userCur + "%.2f"
         
+        print(curFormat)
+        
+        tipPercentageLabel.text = String(format: curFormat, tip)
+        
+        totalLabel.text = String(format: curFormat, total)
+        
+
         
     }
     
